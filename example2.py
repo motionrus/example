@@ -190,6 +190,32 @@ decorated_func(arg_func)
 # ('decorate', 'decorate2')
 # ('arg_func',) {}
 
+
+# Следующий пример с использованием декораторов, передавая параметры в декоратор
+# 
+
+def font(size):
+    def decorate(func):
+        def wrapped(text):
+            print("<font size={}>{}</font>".format(size, text))
+        return wrapped
+    return decorate
+
+def html(text):
+    print(text)
+
+# result
+# In [103]: font(4)(html)("Hello World4")
+# 			<font size=4>Hello World4</font>
+
+@font(7)
+def html(text):
+    print(text)
+
+# result
+# In [106]: html("Hello World")
+# 			<font size=7>Hello World</font>
+
 # CHECK DIFFERENT TIMEOVER EXTEND LIST
 #
 
